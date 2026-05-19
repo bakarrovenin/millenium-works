@@ -1,0 +1,102 @@
+/* Climate Crisis font loaded via Google Fonts in index.html */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 10% 80%;
+    --foreground: 0 0% 2%;
+
+    --card: 60 10% 98%;
+    --card-foreground: 0 0% 8%;
+
+    --popover: 60 10% 98%;
+    --popover-foreground: 0 0% 8%;
+
+    --primary: 0 0% 8%;
+    --primary-foreground: 60 10% 98%;
+
+    --secondary: 60 5% 94%;
+    --secondary-foreground: 0 0% 8%;
+
+    --muted: 60 5% 90%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 60 5% 94%;
+    --accent-foreground: 0 0% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 10% 98%;
+
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 0 0% 8%;
+
+    --radius: 0rem;
+
+    --sidebar-background: 60 10% 98%;
+    --sidebar-foreground: 0 0% 8%;
+    --sidebar-primary: 0 0% 8%;
+    --sidebar-primary-foreground: 60 10% 98%;
+    --sidebar-accent: 60 5% 94%;
+    --sidebar-accent-foreground: 0 0% 8%;
+    --sidebar-border: 0 0% 85%;
+    --sidebar-ring: 0 0% 8%;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 60 10% 98%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 60 10% 98%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 60 10% 98%;
+
+    --primary: 60 10% 98%;
+    --primary-foreground: 0 0% 8%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 60 10% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 0 0% 15%;
+    --accent-foreground: 60 10% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 10% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 60 10% 98%;
+
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 60 10% 98%;
+    --sidebar-primary: 60 10% 98%;
+    --sidebar-primary-foreground: 0 0% 8%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 60 10% 98%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 60 10% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 400;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
