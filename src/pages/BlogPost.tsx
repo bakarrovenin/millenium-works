@@ -106,8 +106,10 @@ const BlogPost = () => {
 
         {post && (
           <article>
-            <h1 className="text-2xl md:text-3xl font-normal mb-4">{post.title}</h1>
-            <div className="flex gap-4 text-muted-foreground text-sm mb-8">
+            <h1 className="font-display text-4xl md:text-6xl text-foreground mb-6 leading-[1.05]">
+              {post.title}
+            </h1>
+            <div className="flex gap-4 tracked-label text-muted-foreground mb-10 border-b border-border pb-6">
               {post.publishedDate && (
                 <time>
                   {new Date(post.publishedDate).toLocaleDateString("en-US", {
@@ -117,14 +119,14 @@ const BlogPost = () => {
                   })}
                 </time>
               )}
-              {post.author && <span>by {post.author}</span>}
+              {post.author && <span>— {post.author}</span>}
             </div>
 
             {post.featuredImage && (
               <img
                 src={post.featuredImage.url}
                 alt={post.featuredImage.title}
-                className="w-full rounded mb-8"
+                className="w-full mb-10"
               />
             )}
 

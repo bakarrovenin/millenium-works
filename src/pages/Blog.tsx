@@ -28,7 +28,14 @@ const Blog = () => {
   return (
     <Layout>
       <div className="px-8 md:px-12 py-12 md:py-20">
-        <h1 className="text-2xl md:text-3xl font-normal mb-12 md:mb-16">Blog</h1>
+        <div className="flex items-baseline justify-between mb-12 md:mb-16">
+          <h1 className="font-display text-5xl md:text-7xl text-foreground">
+            <span className="font-display-italic">Journal</span>
+          </h1>
+          <span className="tracked-label text-muted-foreground hidden md:block">
+            Notes from the frontier
+          </span>
+        </div>
 
         {isLoading && (
           <p className="text-muted-foreground text-sm">Loading posts…</p>
@@ -44,38 +51,36 @@ const Blog = () => {
           <p className="text-muted-foreground text-sm">No posts yet.</p>
         )}
 
-        <div className="space-y-8 md:space-y-10">
+        <div className="divide-y divide-border border-y border-border">
           {posts?.map((post, i) => (
             <Link
               key={post.id}
               to={`/blog/${post.slug}`}
-              className="group block"
+              className="group block py-6 md:py-8"
             >
-              <article>
-                <div className="flex items-baseline gap-4 md:gap-6">
-                  <span className="text-muted-foreground text-sm font-normal">
-                    {String(i + 1).padStart(2, "0")}.
-                  </span>
-                  <div className="flex-1">
-                    <h2 className="text-lg md:text-xl font-normal group-hover:opacity-70 transition-opacity">
-                      {post.title}
-                    </h2>
-                    {post.excerpt && (
-                      <p className="text-muted-foreground text-sm md:text-base mt-1">
-                        {post.excerpt}
-                      </p>
-                    )}
-                  </div>
-                  {post.publishedDate && (
-                    <span className="text-muted-foreground text-sm hidden md:block">
-                      {new Date(post.publishedDate).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
-                    </span>
+              <article className="flex items-baseline gap-6 md:gap-10">
+                <span className="tracked-label text-muted-foreground w-8 shrink-0">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="flex-1">
+                  <h2 className="font-display text-2xl md:text-3xl text-foreground group-hover:text-accent transition-colors">
+                    {post.title}
+                  </h2>
+                  {post.excerpt && (
+                    <p className="text-muted-foreground text-sm md:text-base mt-2 leading-relaxed max-w-2xl">
+                      {post.excerpt}
+                    </p>
                   )}
                 </div>
+                {post.publishedDate && (
+                  <span className="tracked-label text-muted-foreground hidden md:block shrink-0">
+                    {new Date(post.publishedDate).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </span>
+                )}
               </article>
             </Link>
           ))}
