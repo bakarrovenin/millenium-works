@@ -25,12 +25,15 @@ const Contact = () => {
           <div>
             <p className="tracked-label text-muted-foreground mb-3">Get in touch</p>
 
-            <a
-              href="mailto:mas@rovenin.com"
-              className="font-display text-2xl md:text-3xl text-foreground leading-snug hover:text-accent transition-colors inline-block"
-            >
-              Get in touch <span className="font-display-italic">→</span>
-            </a>
+            <p className="font-display text-2xl md:text-3xl text-foreground leading-snug">
+              Send queries to{" "}
+              <a
+                href="mailto:mas@rovenin.com"
+                className="hover:text-accent transition-colors"
+              >
+                mas@rovenin.com
+              </a>
+            </p>
           </div>
         </div>
       </div>
