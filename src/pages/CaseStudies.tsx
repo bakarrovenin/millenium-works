@@ -11,6 +11,7 @@ import img07 from "@/assets/case-studies/07-steve.jpg";
 import img08 from "@/assets/case-studies/08-rovenin.jpg";
 import img09 from "@/assets/case-studies/09-avatar.jpg";
 import img10 from "@/assets/case-studies/10-islapay.jpg";
+import img11 from "@/assets/case-studies/11-market-tracker.jpg";
 
 type Card = {
   id: string;
@@ -35,6 +36,7 @@ const fallback: Card[] = [
   { id: "08", title: "Rovenin", description: "AI-powered hedge fund with autonomous trading bots", year: "2025", tags: ["Applied AI", "Fintech"], image: img08 },
   { id: "09", title: "AI Avatar", description: "Generate culturally localized avatars with AI", year: "2025", tags: ["Applied AI", "Consumer"], image: img09 },
   { id: "10", title: "Islapay", description: "Stablecoin-based consumer payments for the Caribbean", year: "2025—2026", tags: ["Fintech", "Consumer"], image: img10 },
+  { id: "11", title: "Market Tracker", description: "A lightweight market price tracker built to run on a BlackBerry Passport with live prices for stocks, commodities, indices, and crypto.", year: "2026", tags: ["Fintech", "Tool"], image: img11, externalUrl: "https://github.com/bakarrovenin/stock-tracker" },
 ];
 
 const fetchCaseStudies = async (): Promise<Card[]> => {
@@ -101,12 +103,23 @@ const CaseStudies = () => {
               <article key={study.id} className="group flex flex-col">
                 <div className="relative aspect-[4/3] overflow-hidden border border-border bg-card mb-5">
                   {study.image && (
-                    <img
-                      src={study.image}
-                      alt={study.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+                    study.externalUrl ? (
+                      <a href={study.externalUrl} target="_blank" rel="noopener noreferrer">
+                        <img
+                          src={study.image}
+                          alt={study.title}
+                          loading="lazy"
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                      </a>
+                    ) : (
+                      <img
+                        src={study.image}
+                        alt={study.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    )
                   )}
                   <span className="absolute top-3 left-3 tracked-label text-muted-foreground">
                     {study.id}
