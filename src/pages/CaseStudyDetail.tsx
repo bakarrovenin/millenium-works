@@ -1,195 +1,220 @@
+import { Fragment, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { BLOCKS, INLINES } from "@contentful/rich-text-types";
-import { supabase } from "@/integrations/supabase/client";
 import Layout from "@/components/Layout";
+import CoverArt from "@/components/CoverArt";
+import { caseStudies, type Section } from "@/data/caseStudies";
 
-interface CaseStudy {
-  id: string;
-  title: string;
-  slug: string;
-  tagline: string;
-  year: string;
-  status: string | null;
-  tags: string[];
-  coverImage: { url: string; title: string } | null;
-  gallery: { url: string; title: string }[];
-  body: any;
-  externalUrl: string | null;
-  metrics: Record<string, string> | null;
-}
+/** Small gold dot used on every eyebrow label across the site. */
+const Dot = () => (
+  <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2 align-middle" />
+);
 
-const fetchCaseStudy = async (slug: string): Promise<CaseStudy | null> => {
-  const { data, error } = await supabase.functions.invoke("contentful-case-studies", {
-    body: null,
-    method: "GET",
-    headers: {},
-  } as any);
-  // Edge function uses query param; use direct fetch instead.
-  if (error || !data) {
-    const res = await fetch(
-      `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/contentful-case-studies?slug=${slug}`,
-      {
-        headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    if (!res.ok) throw new Error("Failed to fetch case study");
-    const json = await res.json();
-    return json.caseStudies?.[0] ?? null;
-  }
-  return data.caseStudies?.find((c: CaseStudy) => c.slug === slug) ?? null;
-};
-
-const richTextOptions = {
-  renderNode: {
-    [BLOCKS.PARAGRAPH]: (_n: any, c: any) => (
-      <p className="text-foreground/90 text-sm md:text-base leading-relaxed mb-4">{c}</p>
-    ),
-    [BLOCKS.HEADING_2]: (_n: any, c: any) => (
-      <h2 className="font-display text-2xl md:text-3xl mt-10 mb-4">{c}</h2>
-    ),
-    [BLOCKS.HEADING_3]: (_n: any, c: any) => (
-      <h3 className="font-display text-xl md:text-2xl mt-8 mb-3">{c}</h3>
-    ),
-    [BLOCKS.UL_LIST]: (_n: any, c: any) => (
-      <ul className="list-disc list-inside space-y-1 mb-4 text-foreground/90">{c}</ul>
-    ),
-    [BLOCKS.OL_LIST]: (_n: any, c: any) => (
-      <ol className="list-decimal list-inside space-y-1 mb-4 text-foreground/90">{c}</ol>
-    ),
-    [BLOCKS.QUOTE]: (_n: any, c: any) => (
-      <blockquote className="border-l-2 border-muted-foreground pl-4 italic my-4 text-muted-foreground">
-        {c}
-      </blockquote>
-    ),
-    [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
-      const { title, file } = node.data.target.fields;
+/**
+ * Renders body copy, turning [text](href) into links.
+ * Hrefs starting with "/" stay in-app; everything else opens in a new tab.
+ */
+const renderRich = (text: string) => {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
+  return parts.map((part, i) => {
+    const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (!match) return <Fragment key={i}>{part}</Fragment>;
+    const [, label, href] = match;
+    if (href.startsWith("/")) {
       return (
-        <img src={`https:${file.url}`} alt={title || ""} className="w-full my-8 border border-border" />
+        <Link key={i} to={href} className="text-accent hover:opacity-70 transition-opacity">
+          {label}
+        </Link>
       );
-    },
-    [INLINES.HYPERLINK]: (node: any, c: any) => (
+    }
+    return (
       <a
-        href={node.data.uri}
+        key={i}
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="underline hover:text-accent transition-colors"
+        className="text-accent hover:opacity-70 transition-opacity"
       >
-        {c}
+        {label}
       </a>
-    ),
-  },
+    );
+  });
 };
 
-const CaseStudyDetail = () => {
-  const { slug } = useParams<{ slug: string }>();
+const SectionRow = ({ section }: { section: Section }) => (
+  <section className="grid md:grid-cols-[minmax(0,200px)_1fr] gap-3 md:gap-12 py-8 md:py-10 border-b border-border">
+    <h2 className="tracked-label text-muted-foreground md:pt-1">
+      <Dot />
+      {section.label}
+    </h2>
+    <div className="max-w-3xl">
+      {section.body && (
+        <p className="text-foreground text-base md:text-lg leading-relaxed">
+          {renderRich(section.body)}
+        </p>
+      )}
+      {section.bullets && (
+        <ul className="space-y-3">
+          {section.bullets.map((bullet, i) => (
+            <li key={i} className="flex gap-3">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mt-2.5 shrink-0" />
+              <span
+                className={`text-base md:text-lg leading-relaxed ${
+                  section.italicBullets
+                    ? "font-display-italic text-foreground text-lg md:text-xl"
+                    : "text-foreground"
+                }`}
+              >
+                {renderRich(bullet)}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+);
 
-  const { data: study, isLoading, error } = useQuery({
-    queryKey: ["case-study", slug],
-    queryFn: () => fetchCaseStudy(slug!),
-    enabled: !!slug,
-  });
+const CaseStudyDetail = () => {
+  const { slug } = useParams();
+
+  // Prev/next keeps you on the same page component, so reset scroll on change.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
+
+  const index = caseStudies.findIndex((s) => s.slug === slug);
+  const study = index >= 0 ? caseStudies[index] : undefined;
+
+  if (!study) {
+    return (
+      <Layout>
+        <div className="px-8 md:px-12 py-12 md:py-20">
+          <h1 className="font-display text-4xl md:text-5xl text-foreground mb-6">
+            Case study not found
+          </h1>
+          <Link to="/case-studies" className="tracked-label text-accent hover:opacity-70">
+            <Dot />
+            Back to case studies
+          </Link>
+        </div>
+      </Layout>
+    );
+  }
+
+  const prev = index > 0 ? caseStudies[index - 1] : undefined;
+  const next = index < caseStudies.length - 1 ? caseStudies[index + 1] : undefined;
 
   return (
     <Layout>
-      <div className="px-8 md:px-12 py-12 md:py-20 max-w-4xl">
-        <Link
-          to="/case-studies"
-          className="text-muted-foreground text-sm hover:text-foreground transition-colors mb-8 inline-block"
+      <div className="px-8 md:px-12 py-12 md:py-20">
+        <div className="flex items-baseline justify-between mb-10 md:mb-12">
+          <Link
+            to="/case-studies"
+            className="tracked-label text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Dot />
+            Case study {study.id}
+          </Link>
+          <span className="tracked-label text-accent">{study.status}</span>
+        </div>
+
+        <h1 className="font-display text-5xl md:text-7xl text-foreground leading-[1] max-w-4xl">
+          {study.title}
+        </h1>
+
+        <p className="font-display-italic text-xl md:text-2xl text-muted-foreground mt-6 max-w-3xl leading-relaxed">
+          {study.tagline}
+        </p>
+
+        <dl className="mt-10 md:mt-12 border-y border-border py-5 flex flex-wrap gap-x-12 gap-y-4">
+          <div>
+            <dt className="tracked-label text-muted-foreground mb-1.5">Year</dt>
+            <dd className="text-foreground text-sm">{study.year}</dd>
+          </div>
+          <div>
+            <dt className="tracked-label text-muted-foreground mb-1.5">Sector</dt>
+            <dd className="text-foreground text-sm">{study.sectors.join(", ")}</dd>
+          </div>
+        </dl>
+
+        <div
+          className={`mt-10 md:mt-12 w-full md:w-[60%] mx-auto overflow-hidden border border-border bg-card ${
+            study.cover.kind === "image" ? "aspect-[16/9]" : "aspect-[21/9]"
+          }`}
         >
-          ← Back to Case Studies
-        </Link>
-
-        {isLoading && <p className="text-muted-foreground text-sm">Loading…</p>}
-        {error && <p className="text-destructive text-sm">Failed to load case study.</p>}
-        {!isLoading && !study && (
-          <p className="text-muted-foreground text-sm">Case study not found.</p>
-        )}
-
-        {study && (
-          <article>
-            <div className="flex items-baseline gap-4 mb-4 tracked-label text-muted-foreground">
-              <span>{study.year}</span>
-              {study.status && <span className="text-accent">— {study.status}</span>}
+          {study.cover.kind === "image" ? (
+            <img
+              src={study.cover.src}
+              alt={study.title}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center p-6 md:p-8">
+              <CoverArt shape={study.cover.shape} className="max-w-2xl" />
             </div>
+          )}
+        </div>
 
-            <h1 className="font-display text-4xl md:text-6xl text-foreground mb-4 leading-[1.05]">
-              {study.title}
-            </h1>
+        <div className="mt-12 md:mt-16 border-t border-border">
+          {study.sections.map((section) => (
+            <SectionRow key={section.label} section={section} />
+          ))}
 
-            {study.tagline && (
-              <p className="text-muted-foreground text-lg md:text-xl mb-8 max-w-2xl">
-                {study.tagline}
-              </p>
-            )}
-
-            {study.tags?.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-10">
-                {study.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="tracked-label text-foreground/80 border border-border rounded-full px-3 py-1"
-                  >
-                    {tag}
-                  </span>
-                ))}
+          {study.links.length > 0 && (
+            <section className="grid md:grid-cols-[minmax(0,200px)_1fr] gap-3 md:gap-12 py-8 md:py-10 border-b border-border">
+              <h2 className="tracked-label text-muted-foreground md:pt-1">
+                <Dot />
+                Live
+              </h2>
+              <div className="flex flex-wrap gap-x-8 gap-y-3">
+                {study.links.map((link) =>
+                  link.href.startsWith("/") ? (
+                    <Link
+                      key={link.href + link.label}
+                      to={link.href}
+                      className="text-accent hover:opacity-70 transition-opacity text-base md:text-lg"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      key={link.href + link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent hover:opacity-70 transition-opacity text-base md:text-lg"
+                    >
+                      {link.label}
+                    </a>
+                  )
+                )}
               </div>
-            )}
+            </section>
+          )}
+        </div>
 
-            {study.coverImage && (
-              <img
-                src={study.coverImage.url}
-                alt={study.coverImage.title || study.title}
-                className="w-full mb-10 border border-border"
-              />
+        <nav className="mt-12 md:mt-16 flex items-start justify-between gap-8">
+          <div className="min-w-0">
+            {prev && (
+              <Link to={`/case-studies/${prev.slug}`} className="group block">
+                <span className="tracked-label text-muted-foreground block mb-2">Previous</span>
+                <span className="font-display text-xl md:text-2xl text-foreground group-hover:text-accent transition-colors">
+                  {prev.title}
+                </span>
+              </Link>
             )}
-
-            {study.metrics && Object.keys(study.metrics).length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 border-y border-border py-8 my-10">
-                {Object.entries(study.metrics).map(([k, v]) => (
-                  <div key={k}>
-                    <div className="font-display text-3xl md:text-4xl">{v}</div>
-                    <div className="tracked-label text-muted-foreground mt-1">{k}</div>
-                  </div>
-                ))}
-              </div>
+          </div>
+          <div className="min-w-0 text-right">
+            {next && (
+              <Link to={`/case-studies/${next.slug}`} className="group block">
+                <span className="tracked-label text-muted-foreground block mb-2">Next</span>
+                <span className="font-display text-xl md:text-2xl text-foreground group-hover:text-accent transition-colors">
+                  {next.title}
+                </span>
+              </Link>
             )}
-
-            <div className="prose-minimal">
-              {study.body && documentToReactComponents(study.body, richTextOptions)}
-            </div>
-
-            {study.gallery?.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-                {study.gallery.map((img, i) => (
-                  <img
-                    key={i}
-                    src={img.url}
-                    alt={img.title}
-                    className="w-full border border-border"
-                  />
-                ))}
-              </div>
-            )}
-
-            {study.externalUrl && (
-              <div className="mt-12 pt-8 border-t border-border">
-                <a
-                  href={study.externalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="tracked-label text-foreground hover:text-accent transition-colors"
-                >
-                  View full case study →
-                </a>
-              </div>
-            )}
-          </article>
-        )}
+          </div>
+        </nav>
       </div>
     </Layout>
   );
