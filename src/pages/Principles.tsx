@@ -70,7 +70,8 @@ const Principles = () => {
             <span className="font-display-italic">Principles</span>
           </h1>
           <span className="tracked-label text-muted-foreground hidden md:block">
-            11 — How we operate
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2 align-middle" />
+            How we operate
           </span>
         </div>
 

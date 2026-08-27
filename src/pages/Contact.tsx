@@ -4,14 +4,16 @@ const Contact = () => {
   return (
     <Layout>
       <div className="px-8 md:px-12 py-12 md:py-20">
-        <span className="tracked-label text-muted-foreground">
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2 align-middle" />
-          Contact
-        </span>
-        <h1 className="font-display text-5xl md:text-7xl text-foreground mt-6 mb-12 leading-[1] max-w-3xl">
-          Building something{" "}
-          <span className="font-display-italic">ambitious?</span>
-        </h1>
+        <div className="flex items-baseline justify-between mb-12 md:mb-16">
+          <h1 className="font-display text-5xl md:text-7xl text-foreground leading-[1] max-w-3xl">
+            Building something{" "}
+            <span className="font-display-italic">ambitious?</span>
+          </h1>
+          <span className="tracked-label text-muted-foreground hidden md:block">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2 align-middle" />
+            Contact
+          </span>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl border-t border-border pt-10">
           <div>

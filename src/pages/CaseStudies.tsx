@@ -81,7 +81,8 @@ const CaseStudies = () => {
             Case <span className="font-display-italic">studies</span>
           </h1>
           <span className="tracked-label text-muted-foreground hidden md:block">
-            {caseStudies.length} selected
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2 align-middle" />
+            Proof of work
           </span>
         </div>
 
