@@ -219,6 +219,33 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "07",
+    slug: "vitalis-living",
+    title: "Vitalis Living",
+    status: "Live",
+    sectors: ["Consumer", "Health", "Longevity"],
+    year: "2025",
+    tagline:
+      "A bet on the longevity space: Pakistan's natural, plant-based supplements brand.",
+    tier: "full",
+    cover: { kind: "art", shape: "vitalis" },
+    sections: [
+      {
+        label: "The Thesis",
+        body: "Longevity has moved from fringe to one of the defining consumer categories of the decade. Vitalis Living is a bet on that shift close to home, a natural, plant-based supplements brand built for everyday health and vitality in a market just waking up to the category.",
+      },
+      {
+        label: "What We Shaped",
+        body: "We cofounded Vitalis, built the first SKU list, and launched the first product, a shilajit supplement, taking the brand from nothing to a live, revenue-generating business.",
+      },
+      {
+        label: "Proof",
+        body: "Grew to over $50k per month. First product, shilajit, launched and scaled. An early entrant in the regional longevity and natural-supplements space.",
+      },
+    ],
+    links: [{ label: "vitalisliving.pk", href: "https://vitalisliving.pk" }],
+  },
+  {
+    id: "08",
     slug: "alt-ventures",
     title: "Alt Ventures",
     status: "Live",
@@ -249,7 +276,7 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "altventures.co", href: "https://altventures.co" }],
   },
   {
-    id: "08",
+    id: "09",
     slug: "alt-sprints",
     title: "Alt Sprints",
     status: "Sunset",
@@ -278,7 +305,7 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "09",
+    id: "10",
     slug: "pryze",
     title: "Pryze",
     status: "Live",
@@ -308,7 +335,7 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "10",
+    id: "11",
     slug: "jiye-kissan",
     title: "Jiye Kissan",
     status: "Sunset",
@@ -339,7 +366,7 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "11",
+    id: "12",
     slug: "steve-ai",
     title: "Steve AI",
     status: "Sunset",
@@ -357,7 +384,7 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "Steve on Product Hunt", href: "https://www.producthunt.com/products/steve-2" }],
   },
   {
-    id: "12",
+    id: "13",
     slug: "alt-find",
     title: "Alt Find",
     status: "Sunset",
@@ -375,7 +402,7 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "Alt Find on LinkedIn", href: "https://www.linkedin.com/company/altfind" }],
   },
   {
-    id: "13",
+    id: "14",
     slug: "not-nsfw",
     title: "Not NSFW",
     status: "Live",
@@ -393,7 +420,7 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "notnsfw.substack.com", href: "https://notnsfw.substack.com" }],
   },
   {
-    id: "14",
+    id: "15",
     slug: "market-tracker",
     title: "Market Tracker",
     status: "Experiment",
@@ -414,7 +441,7 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "15",
+    id: "16",
     slug: "ai-avatar",
     title: "AI Avatar",
     status: "Experiment",

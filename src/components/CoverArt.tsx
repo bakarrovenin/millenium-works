@@ -5,7 +5,12 @@
  * hex so it stays in step with the rest of the palette.
  */
 
-export type CoverArtKey = "garnet" | "neuromonics" | "adam-smith" | "alt-ventures";
+export type CoverArtKey =
+  | "garnet"
+  | "neuromonics"
+  | "adam-smith"
+  | "alt-ventures"
+  | "vitalis";
 
 const shapes: Record<CoverArtKey, JSX.Element> = {
   garnet: (
@@ -59,6 +64,22 @@ const shapes: Record<CoverArtKey, JSX.Element> = {
       <circle cx="150" cy="150" r="4" stroke="currentColor" strokeWidth="1" />
       <circle cx="214" cy="74" r="3" stroke="currentColor" strokeWidth="0.9" />
       <circle cx="220" cy="132" r="3" stroke="currentColor" strokeWidth="0.9" />
+    </>
+  ),
+  vitalis: (
+    <>
+      <path d="M150 176 C146 148 153 122 150 96 C148 72 150 56 150 38" stroke="currentColor" strokeWidth="1" opacity="0.9" />
+      <path d="M149 146 Q120 120 98 128 Q118 152 149 146" stroke="currentColor" strokeWidth="1" opacity="0.85" />
+      <path d="M149 146 Q124 138 98 128" stroke="currentColor" strokeWidth="0.7" opacity="0.45" />
+      <path d="M151 128 Q182 102 204 110 Q182 134 151 128" stroke="currentColor" strokeWidth="1" opacity="0.85" />
+      <path d="M151 128 Q178 120 204 110" stroke="currentColor" strokeWidth="0.7" opacity="0.45" />
+      <path d="M149 102 Q126 80 110 86 Q128 106 149 102" stroke="currentColor" strokeWidth="0.85" opacity="0.7" />
+      <path d="M149 102 Q128 95 110 86" stroke="currentColor" strokeWidth="0.7" opacity="0.4" />
+      <path d="M151 84 Q174 62 190 68 Q172 88 151 84" stroke="currentColor" strokeWidth="0.85" opacity="0.7" />
+      <path d="M151 84 Q172 77 190 68" stroke="currentColor" strokeWidth="0.7" opacity="0.4" />
+      <path d="M150 58 Q138 44 142 32 Q152 40 150 58" stroke="currentColor" strokeWidth="0.75" opacity="0.5" />
+      <path d="M150 58 Q162 44 158 32 Q148 40 150 58" stroke="currentColor" strokeWidth="0.75" opacity="0.5" />
+      <circle cx="150" cy="28" r="3.5" fill="currentColor" opacity="0.9" />
     </>
   ),
 };
