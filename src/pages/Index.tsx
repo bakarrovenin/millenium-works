@@ -35,6 +35,12 @@ const Index = () => {
               >
                 Case studies
               </Link>
+              <Link
+                to="/about"
+                className="tracked-label text-muted-foreground hover:text-foreground transition-colors"
+              >
+                About
+              </Link>
             </div>
           </div>
 
