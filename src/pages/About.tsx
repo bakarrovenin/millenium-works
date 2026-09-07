@@ -16,6 +16,7 @@ const profiles: { label: string; href: string }[] = [
 
 /** Slugs match src/data/caseStudies.ts; order is deliberate, not alphabetical. */
 const roles: { name: string; slug: string; tag: string }[] = [
+  { name: "Assay", slug: "assay", tag: "Founder" },
   { name: "Garnet", slug: "garnet", tag: "Previous" },
   { name: "Trikl", slug: "trikl", tag: "Acquired" },
   { name: "Alt Ventures", slug: "alt-ventures", tag: "Previous" },
@@ -52,6 +53,35 @@ const writings: { title: string; href: string; note?: string }[] = [
     title: "That One Marx Weber Elective",
     href: "https://blogrenegade.substack.com/p/that-one-karl-marx-elective-in-my",
   },
+];
+
+/** The shelf, in no particular order. The current read leads, tagged inline. */
+const reading: string[] = [
+  "Book of Five Rings (current read)",
+  "Lessons of History",
+  "Heroes of History",
+  "Almanack",
+  "In the Line of Fire",
+  "The Prince",
+  "88 Days to Kandahar",
+  "My Life with the Taliban",
+  "Meditations",
+  "A Brief History of Nearly Everything",
+  "Titan",
+  "48 Laws of Power",
+  "How to Win Friends and Influence People",
+  "Chip War",
+  "Zen and the Art of Motorcycle Maintenance",
+  "Game of Thrones",
+  "The Protestant Ethic",
+  "The Lesser Key of Solomon",
+  "Zero to One",
+  "Atomic Habits",
+  "Caesar: Life of a Colossus",
+  "Plutarch's Lives",
+  "The River of Doubt",
+  "Rockefeller: Letters to His Son",
+  "The Rise and Fall of the Great Powers",
 ];
 
 /** One labelled column. The two sit side by side on desktop and stack on mobile. */
@@ -119,30 +149,45 @@ const About = () => {
             </ul>
           </SectionColumn>
 
-          <SectionColumn label="Writings">
-            <ul>
-              {writings.map((writing) => (
-                <li
-                  key={writing.href}
-                  className="flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3 border-b border-border last:border-b-0"
-                >
-                  <a
-                    href={writing.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-display text-xl md:text-2xl text-foreground hover:text-accent transition-colors"
+          <div className="min-w-0 space-y-12 md:space-y-16">
+            <SectionColumn label="Writings">
+              <ul>
+                {writings.map((writing) => (
+                  <li
+                    key={writing.href}
+                    className="flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3 border-b border-border last:border-b-0"
                   >
-                    {writing.title}
-                  </a>
-                  {writing.note && (
-                    <span className="font-display-italic text-sm md:text-base text-muted-foreground">
-                      {writing.note}
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </SectionColumn>
+                    <a
+                      href={writing.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-display text-xl md:text-2xl text-foreground hover:text-accent transition-colors"
+                    >
+                      {writing.title}
+                    </a>
+                    {writing.note && (
+                      <span className="font-display-italic text-sm md:text-base text-muted-foreground">
+                        {writing.note}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </SectionColumn>
+
+            <SectionColumn label="Reading">
+              <ul>
+                {reading.map((title) => (
+                  <li
+                    key={title}
+                    className="font-display text-xl md:text-2xl text-foreground py-2.5 border-b border-border last:border-b-0"
+                  >
+                    {title}
+                  </li>
+                ))}
+              </ul>
+            </SectionColumn>
+          </div>
         </div>
       </div>
     </Layout>
