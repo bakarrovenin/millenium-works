@@ -6,6 +6,7 @@
  */
 
 export type CoverArtKey =
+  | "assay"
   | "garnet"
   | "neuromonics"
   | "adam-smith"
@@ -13,6 +14,25 @@ export type CoverArtKey =
   | "vitalis";
 
 const shapes: Record<CoverArtKey, JSX.Element> = {
+  assay: (
+    <>
+      <path d="M150 34 L150 166" stroke="currentColor" strokeWidth="1" opacity="0.9" />
+      <path d="M142 34 L158 34" stroke="currentColor" strokeWidth="0.7" opacity="0.4" />
+      <path d="M142 166 L158 166" stroke="currentColor" strokeWidth="0.7" opacity="0.4" />
+      <path d="M80 68 L146 68" stroke="currentColor" strokeWidth="0.7" opacity="0.5" />
+      <path d="M80 100 L144 100" stroke="currentColor" strokeWidth="0.7" opacity="0.5" />
+      <path d="M80 132 L146 132" stroke="currentColor" strokeWidth="0.7" opacity="0.5" />
+      <circle cx="76" cy="68" r="4" stroke="currentColor" strokeWidth="1" />
+      <circle cx="76" cy="100" r="4" stroke="currentColor" strokeWidth="1" />
+      <circle cx="76" cy="132" r="4" stroke="currentColor" strokeWidth="1" />
+      <path d="M154 68 L220 68" stroke="currentColor" strokeWidth="0.7" opacity="0.5" />
+      <path d="M154 132 L220 132" stroke="currentColor" strokeWidth="0.7" opacity="0.5" />
+      <circle cx="224" cy="68" r="4" fill="currentColor" opacity="0.9" />
+      <circle cx="224" cy="132" r="4" fill="currentColor" opacity="0.9" />
+      <path d="M144 94 L156 106" stroke="currentColor" strokeWidth="1" opacity="0.9" />
+      <path d="M156 94 L144 106" stroke="currentColor" strokeWidth="1" opacity="0.9" />
+    </>
+  ),
   garnet: (
     <>
       <path d="M120 66 L180 66 L210 100 L150 156 L90 100 Z" stroke="currentColor" strokeWidth="1" opacity="0.9" />

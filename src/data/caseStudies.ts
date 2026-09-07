@@ -44,6 +44,33 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     id: "01",
+    slug: "assay",
+    title: "Assay",
+    status: "Live",
+    sectors: ["Security", "Developer Tools", "AI"],
+    year: "2026",
+    tagline:
+      "The independent verification layer for AI-authored code, one verdict on every automated fix before it merges.",
+    tier: "full",
+    cover: { kind: "art", shape: "assay" },
+    sections: [
+      {
+        label: "The Thesis",
+        body: "Assay is the independent verification layer for AI-authored code. Coding agents now write their own security patches and certify their own work. The scanner goes green, the pull request merges, and no one checks whether the bug actually closed. Assay is the third party that does. It runs one verdict on every AI-authored change before it merges, testing the fix against held-out payloads rather than trusting that the reported string disappeared.",
+      },
+      {
+        label: "The Problem",
+        body: "The problem is specific and growing. A patch can match the exact vulnerability that was reported and still leave the class of attack open. In one verification, a fix closed the reported sink, passed the scanner with zero findings, and still failed 1 of 47 held-out injection payloads. The alert went green. The bug did not. Assay catches that gap, checks for regressions and provenance, and issues a verified or not verified result with the evidence attached.",
+      },
+      {
+        label: "What We Shaped",
+        body: "This builds directly on my work at [Garnet](/case-studies/garnet) in cloud-native and runtime security, where the job was finding what is actually exploitable in live systems. Assay is the other half of that problem: not just detecting the vulnerability, but governing whether the automated fix can be trusted. It verifies fixes from GitHub Copilot Autofix, Cursor, Claude Code, OpenAI Codex, Snyk, and others, and installs on public repositories in under a minute.",
+      },
+    ],
+    links: [{ label: "assay.website", href: "https://assay.website" }],
+  },
+  {
+    id: "02",
     slug: "rovenin",
     title: "Rovenin",
     status: "Live",
@@ -79,7 +106,7 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "rovenin.com", href: "https://rovenin.com" }],
   },
   {
-    id: "02",
+    id: "03",
     slug: "trikl",
     title: "Trikl",
     status: "Acquired",
@@ -109,7 +136,7 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "03",
+    id: "04",
     slug: "garnet",
     title: "Garnet",
     status: "Live",
@@ -136,7 +163,7 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "garnet.ai", href: "https://www.garnet.ai" }],
   },
   {
-    id: "04",
+    id: "05",
     slug: "adam-smith-international",
     title: "Adam Smith International",
     status: "Delivered",
@@ -165,7 +192,7 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "05",
+    id: "06",
     slug: "neuromonics",
     title: "Neuromonics",
     status: "Live",
@@ -192,7 +219,7 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "neuromonics.com", href: "https://www.neuromonics.com" }],
   },
   {
-    id: "06",
+    id: "07",
     slug: "islapay",
     title: "Islapay",
     status: "Live",
@@ -218,7 +245,7 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "Islapay on LinkedIn", href: "https://www.linkedin.com/company/islapay" }],
   },
   {
-    id: "07",
+    id: "08",
     slug: "vitalis-living",
     title: "Vitalis Living",
     status: "Live",
@@ -245,7 +272,7 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "vitalisliving.pk", href: "https://vitalisliving.pk" }],
   },
   {
-    id: "08",
+    id: "09",
     slug: "alt-ventures",
     title: "Alt Ventures",
     status: "Live",
@@ -276,7 +303,7 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "altventures.co", href: "https://altventures.co" }],
   },
   {
-    id: "09",
+    id: "10",
     slug: "alt-sprints",
     title: "Alt Sprints",
     status: "Sunset",
@@ -305,7 +332,7 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "10",
+    id: "11",
     slug: "pryze",
     title: "Pryze",
     status: "Live",
@@ -335,7 +362,7 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "11",
+    id: "12",
     slug: "jiye-kissan",
     title: "Jiye Kissan",
     status: "Sunset",
@@ -366,7 +393,7 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "12",
+    id: "13",
     slug: "steve-ai",
     title: "Steve AI",
     status: "Sunset",
@@ -384,7 +411,7 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "Steve on Product Hunt", href: "https://www.producthunt.com/products/steve-2" }],
   },
   {
-    id: "13",
+    id: "14",
     slug: "alt-find",
     title: "Alt Find",
     status: "Sunset",
@@ -402,7 +429,7 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "Alt Find on LinkedIn", href: "https://www.linkedin.com/company/altfind" }],
   },
   {
-    id: "14",
+    id: "15",
     slug: "not-nsfw",
     title: "Not NSFW",
     status: "Live",
@@ -420,7 +447,7 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "notnsfw.substack.com", href: "https://notnsfw.substack.com" }],
   },
   {
-    id: "15",
+    id: "16",
     slug: "market-tracker",
     title: "Market Tracker",
     status: "Experiment",
@@ -441,7 +468,7 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "16",
+    id: "17",
     slug: "ai-avatar",
     title: "AI Avatar",
     status: "Experiment",
