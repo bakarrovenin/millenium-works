@@ -1,0 +1,161 @@
+/*
+ * /about, as a standalone document.
+ *
+ * A CSS Module, so every class name below is hashed at build time and cannot
+ * reach any other page. Nothing here is a Tailwind utility and nothing here
+ * touches the site's tokens, so the design system and this page are sealed
+ * off from each other in both directions.
+ *
+ * Treatment is taken from inferact.ai: one narrow centred column, near black
+ * on white, a warm book serif, section headings told apart by weight rather
+ * than size, paragraphs separated by space alone, ruled rows with no card or
+ * panel chrome.
+ */
+
+/* Applied to <body> while this page is mounted, and removed on unmount, so
+   the site's dark ground does not show through. */
+.docBody {
+  background: #ffffff !important;
+  color: #111111;
+}
+
+.doc {
+  box-sizing: border-box;
+  /* The measure is ~68 characters of real prose in Newsreader, which is a
+     narrow face: 34em set 78. Measured at 1512 rather than assumed. */
+  max-width: 30em;
+  margin-inline: auto;
+  padding: 108px 24px 96px;
+
+  font-family: Newsreader, 'Iowan Old Style', Charter, Palatino, Georgia, serif;
+  font-size: 20px;
+  line-height: 1.68;
+  color: #111111;
+  background: #ffffff;
+}
+
+@media (min-width: 640px) {
+  .doc {
+    padding: 164px 32px 128px;
+  }
+}
+
+/* --- header --- */
+
+.name {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.line {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.portrait {
+  display: block;
+  width: 120px;
+  height: auto;
+  margin: 40px 0 40px;
+  filter: grayscale(100%);
+}
+
+/* --- body --- */
+
+.doc p {
+  margin: 0 0 1.05em;
+}
+
+/* Barely larger than the body, told apart by weight and by the space above
+   it rather than by a rule. */
+.h {
+  margin: 2.5em 0 0.75em;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.doc a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.doc a:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* --- ruled rows: name left, tag right --- */
+
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid #e6e4e0;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 9px 0;
+  border-bottom: 1px solid #e6e4e0;
+}
+
+.rowName {
+  min-width: 0;
+}
+
+.rowTag {
+  flex: none;
+  font-size: 15px;
+  color: #6b6862;
+  text-align: right;
+}
+
+/* "current read", set small and italic after the title. */
+.inlineNote {
+  margin-left: 8px;
+  font-size: 15px;
+  font-style: italic;
+  color: #6b6862;
+}
+
+/* --- elsewhere --- */
+
+.elsewhere {
+  margin: 0;
+}
+
+.sep {
+  margin: 0 8px;
+  color: #9a968f;
+}
+
+/* --- footer navigation, the only navigation on the page --- */
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin-top: 4.5em;
+  padding-top: 22px;
+  border-top: 1px solid #e6e4e0;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.foot a {
+  color: #6b6862;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  /* A label is one thing. Without this "Case Studies" and "What We Do" break
+     across lines at narrow widths. */
+  white-space: nowrap;
+}
