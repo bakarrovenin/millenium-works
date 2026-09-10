@@ -30,10 +30,10 @@ const Contact = () => {
             <p className="font-display text-2xl md:text-3xl text-foreground leading-snug">
               Send queries to{" "}
               <a
-                href="mailto:mas@rovenin.com"
+                href="mailto:connect.bakar@gmail.com"
                 className="hover:text-accent transition-colors"
               >
-                mas@rovenin.com
+                connect.bakar@gmail.com
               </a>
             </p>
           </div>

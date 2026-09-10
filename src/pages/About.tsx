@@ -11,7 +11,7 @@ const profiles: { label: string; href: string }[] = [
   { label: "X", href: "https://x.com/BakarsPOV" },
   { label: "GitHub", href: "https://github.com/bakarrovenin" },
   { label: "Substack", href: "https://blogrenegade.substack.com/" },
-  { label: "Email", href: "mailto:mas@rovenin.com" },
+  { label: "Email", href: "mailto:connect.bakar@gmail.com" },
 ];
 
 /** Slugs match src/data/caseStudies.ts; order is deliberate, not alphabetical. */
