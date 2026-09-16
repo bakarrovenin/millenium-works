@@ -14,8 +14,8 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['"Instrument Serif"', 'Georgia', 'serif'],
+        sans: ['"Turret Road"', 'system-ui', 'sans-serif'],
+        display: ['"Turret Road"', 'Georgia', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -52,7 +52,7 @@
   }
 
   html, body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Turret Road', system-ui, sans-serif;
     font-weight: 400;
     font-feature-settings: "ss01", "cv11";
   }
@@ -64,19 +64,19 @@
 
 @layer utilities {
   .font-display {
-    font-family: 'Instrument Serif', Georgia, serif;
+    font-family: 'Turret Road', Georgia, serif;
     font-weight: 400;
     letter-spacing: -0.01em;
   }
 
   .font-display-italic {
-    font-family: 'Instrument Serif', Georgia, serif;
+    font-family: 'Turret Road', Georgia, serif;
     font-style: italic;
     font-weight: 400;
   }
 
   .tracked-label {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Turret Road', sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.18em;
     font-size: 0.7rem;
