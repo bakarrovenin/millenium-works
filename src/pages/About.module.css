@@ -6,156 +6,159 @@
  * touches the site's tokens, so the design system and this page are sealed
  * off from each other in both directions.
  *
- * Treatment is taken from inferact.ai: one narrow centred column, near black
- * on white, a warm book serif, section headings told apart by weight rather
- * than size, paragraphs separated by space alone, ruled rows with no card or
- * panel chrome.
+ * Treatment: one centred column on white, black text, a single mid grey for
+ * the small section labels and the role line, and a two column grid below the
+ * bio. No rules, no cards, no panel chrome. Sections are told apart by their
+ * grey label and by space alone.
+ *
+ * The typeface is not set here. It is inherited from the site's base styles
+ * so that every page shares one body font.
  */
 
 /* Applied to <body> while this page is mounted, and removed on unmount, so
    the site's dark ground does not show through. */
 .docBody {
   background: #ffffff !important;
-  color: #111111;
+  color: #000000;
 }
 
 .doc {
   box-sizing: border-box;
-  /* The measure is ~68 characters of real prose in Newsreader, which is a
-     narrow face: 34em set 78. Measured at 1512 rather than assumed. */
-  max-width: 30em;
+  max-width: 640px;
   margin-inline: auto;
-  padding: 108px 24px 96px;
+  /* Generous space above so the content starts well down the page. */
+  padding: 112px 24px 96px;
 
-  font-family: 'Turret Road', 'Iowan Old Style', Charter, Palatino, Georgia, serif;
-  font-size: 20px;
-  line-height: 1.68;
-  color: #111111;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #000000;
   background: #ffffff;
+  text-align: left;
 }
 
 @media (min-width: 640px) {
   .doc {
-    padding: 164px 32px 128px;
+    padding: 200px 32px 128px;
   }
 }
 
 /* --- header --- */
 
+.header {
+  margin: 0 0 32px;
+}
+
 .name {
   margin: 0;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 19px;
+  font-weight: 500;
   line-height: 1.4;
+  color: #000000;
 }
 
 .line {
   margin: 0;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 400;
   line-height: 1.4;
+  color: #9da0a5;
 }
 
-.portrait {
-  display: block;
-  width: 120px;
-  height: auto;
-  margin: 40px 0 40px;
-  filter: grayscale(100%);
+/* --- bio --- */
+
+.bio {
+  margin: 0 0 48px;
 }
 
-/* --- body --- */
-
-.doc p {
-  margin: 0 0 1.05em;
+.bio p {
+  margin: 0 0 1em;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #000000;
 }
 
-/* Barely larger than the body, told apart by weight and by the space above
-   it rather than by a rule. */
-.h {
-  margin: 2.5em 0 0.75em;
-  font-size: 21px;
-  font-weight: 700;
-  line-height: 1.4;
+.bio p:last-child {
+  margin-bottom: 0;
 }
 
-.doc a {
+.bio a {
   color: inherit;
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration-color: #9da0a5;
+  text-underline-offset: 3px;
   text-decoration-thickness: 1px;
 }
 
-.doc a:hover {
-  text-decoration-thickness: 2px;
+.bio a:hover {
+  text-decoration-color: #000000;
 }
 
-/* --- ruled rows: name left, tag right --- */
+/* --- two column grid --- */
 
-.rows {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid #e6e4e0;
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: start;
 }
 
-.row {
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 64px;
+    row-gap: 0;
+  }
+}
+
+.column {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 9px 0;
-  border-bottom: 1px solid #e6e4e0;
-}
-
-.rowName {
+  flex-direction: column;
+  gap: 28px;
   min-width: 0;
 }
 
-.rowTag {
-  flex: none;
-  font-size: 15px;
-  color: #6b6862;
-  text-align: right;
-}
+/* --- sections --- */
 
-/* "current read", set small and italic after the title. */
-.inlineNote {
-  margin-left: 8px;
-  font-size: 15px;
-  font-style: italic;
-  color: #6b6862;
-}
-
-/* --- elsewhere --- */
-
-.elsewhere {
+.section {
   margin: 0;
 }
 
-.sep {
-  margin: 0 8px;
-  color: #9a968f;
+/* Small grey label. Same size as the entries, told apart by colour only. */
+.label {
+  margin: 0 0 8px;
+  font-size: inherit;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #9da0a5;
 }
 
-/* --- footer navigation, the only navigation on the page --- */
-
-.foot {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 20px;
-  margin-top: 4.5em;
-  padding-top: 22px;
-  border-top: 1px solid #e6e4e0;
-  font-size: 15px;
-  line-height: 1.8;
+.entries {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.foot a {
-  color: #6b6862;
+.entries li {
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  line-height: 1.5;
+}
+
+.entries a {
+  color: inherit;
+  text-decoration: none;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.entries a:hover {
   text-decoration: underline;
-  text-underline-offset: 2px;
-  /* A label is one thing. Without this "Case Studies" and "What We Do" break
-     across lines at narrow widths. */
-  white-space: nowrap;
+}
+
+/* Tag, author or note that follows an entry on the same line. */
+.meta {
+  margin-left: 10px;
+  font-style: normal;
+  color: #9da0a5;
 }
