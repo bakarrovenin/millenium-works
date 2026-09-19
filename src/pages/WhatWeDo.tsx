@@ -61,7 +61,7 @@ const WhatWeDo = () => {
             A frontier, AI-first studio for{" "}
             <span className="font-display-italic">ambitious</span> founders.
           </h1>
-          <p className="mt-8 text-muted-foreground text-lg max-w-2xl leading-relaxed">
+          <p className="mt-8 text-foreground text-lg max-w-2xl leading-relaxed">
             Seven years of building and growing early-stage products alongside
             investments from Tiger Global, Sequoia, SVP, and other leading
             investors.
@@ -91,7 +91,7 @@ const WhatWeDo = () => {
               <h3 className="font-display text-3xl md:text-4xl text-foreground mt-2 mb-4">
                 {p.title}
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+              <p className="text-foreground text-sm leading-relaxed mb-6">
                 {p.desc}
               </p>
               <div className="flex flex-wrap gap-2">

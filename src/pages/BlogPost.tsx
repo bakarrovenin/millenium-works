@@ -35,22 +35,22 @@ const fetchPost = async (slug: string): Promise<BlogPostData> => {
 const richTextOptions = {
   renderNode: {
     [BLOCKS.PARAGRAPH]: (_node: any, children: any) => (
-      <p className="text-foreground/90 text-sm md:text-base leading-relaxed mb-4">{children}</p>
+      <p className="text-foreground text-sm md:text-base leading-relaxed mb-4">{children}</p>
     ),
     [BLOCKS.HEADING_2]: (_node: any, children: any) => (
       <h2 className="text-xl md:text-2xl font-normal mt-8 mb-4">{children}</h2>
     ),
     [BLOCKS.HEADING_3]: (_node: any, children: any) => (
-      <h3 className="text-lg md:text-xl font-normal mt-6 mb-3">{children}</h3>
+      <h3 className="text-[1.125rem] md:text-xl font-normal mt-6 mb-3">{children}</h3>
     ),
     [BLOCKS.UL_LIST]: (_node: any, children: any) => (
-      <ul className="list-disc list-inside space-y-1 mb-4 text-foreground/90">{children}</ul>
+      <ul className="list-disc list-inside space-y-1 mb-4 text-foreground">{children}</ul>
     ),
     [BLOCKS.OL_LIST]: (_node: any, children: any) => (
-      <ol className="list-decimal list-inside space-y-1 mb-4 text-foreground/90">{children}</ol>
+      <ol className="list-decimal list-inside space-y-1 mb-4 text-foreground">{children}</ol>
     ),
     [BLOCKS.QUOTE]: (_node: any, children: any) => (
-      <blockquote className="border-l-2 border-muted-foreground pl-4 italic my-4 text-muted-foreground">
+      <blockquote className="border-l-2 border-muted-foreground pl-4 italic my-4 text-foreground">
         {children}
       </blockquote>
     ),

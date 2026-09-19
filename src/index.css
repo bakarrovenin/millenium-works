@@ -51,14 +51,27 @@
     @apply border-border;
   }
 
+  /*
+   * Body type is set once, here, and inherited by every page. One family,
+   * one size step above the browser default, one weight step above regular,
+   * on the strongest foreground colour. Headings are pinned below so they
+   * keep the weight they always had and are not dragged along.
+   */
   html, body {
     font-family: 'Turret Road', system-ui, sans-serif;
-    font-weight: 400;
     font-feature-settings: "ss01", "cv11";
   }
 
   body {
     @apply bg-background text-foreground antialiased;
+    font-size: 1.0625rem; /* 17px */
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* Headings keep the weight they had before body text was made heavier. */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
   }
 }
 

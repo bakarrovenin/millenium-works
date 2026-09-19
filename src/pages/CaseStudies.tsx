@@ -56,7 +56,7 @@ const CaseStudies = () => {
                 <span className="tracked-label text-muted-foreground">{study.year}</span>
               </div>
 
-              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+              <p className="text-foreground text-sm leading-relaxed mb-4">
                 {study.tagline}
               </p>
 

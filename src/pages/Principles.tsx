@@ -103,7 +103,7 @@ const Principles = () => {
                   className={`grid transition-all duration-300 ease-out ${isOpen ? "grid-rows-[1fr] opacity-100 pb-6 md:pb-8" : "grid-rows-[0fr] opacity-0"}`}
                 >
                   <div className="overflow-hidden">
-                    <p className="pl-14 md:pl-[4.5rem] pr-8 max-w-2xl text-muted-foreground text-base md:text-lg leading-relaxed">
+                    <p className="pl-14 md:pl-[4.5rem] pr-8 max-w-2xl text-foreground text-base md:text-lg leading-relaxed">
                       {p.body}
                     </p>
                   </div>

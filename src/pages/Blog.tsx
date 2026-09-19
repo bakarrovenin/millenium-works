@@ -68,7 +68,7 @@ const Blog = () => {
                     {post.title}
                   </h2>
                   {post.excerpt && (
-                    <p className="text-muted-foreground text-sm md:text-base mt-2 leading-relaxed max-w-2xl">
+                    <p className="text-foreground text-sm md:text-base mt-2 leading-relaxed max-w-2xl">
                       {post.excerpt}
                     </p>
                   )}

@@ -17,7 +17,7 @@ const Index = () => {
               <br />
               <span className="font-display-italic">frontier.</span>
             </h1>
-            <p className="mt-8 text-muted-foreground text-base md:text-lg leading-relaxed max-w-md">
+            <p className="mt-8 text-foreground text-base md:text-lg leading-relaxed max-w-md">
               We partner with audacious founders to build, grow, and scale the
               next generation of consumer products, vertical SaaS, and applied AI.
             </p>

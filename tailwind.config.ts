@@ -17,6 +17,14 @@ const config: Config = {
         sans: ['"Turret Road"', 'system-ui', 'sans-serif'],
         display: ['"Turret Road"', 'Georgia', 'serif'],
       },
+      // The three body sizes sit one step above Tailwind's defaults
+      // (14/16/18 -> 15/17/19) so paragraphs match the 17px base set on
+      // <body>. Heading sizes (xl and up) are untouched.
+      fontSize: {
+        sm: ["0.9375rem", { lineHeight: "1.375rem" }],
+        base: ["1.0625rem", { lineHeight: "1.5625rem" }],
+        lg: ["1.1875rem", { lineHeight: "1.75rem" }],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
