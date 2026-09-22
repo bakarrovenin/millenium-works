@@ -11,7 +11,9 @@ export type CoverArtKey =
   | "neuromonics"
   | "adam-smith"
   | "alt-ventures"
-  | "vitalis";
+  | "vitalis"
+  | "psx"
+  | "transcend";
 
 const shapes: Record<CoverArtKey, JSX.Element> = {
   assay: (
@@ -100,6 +102,33 @@ const shapes: Record<CoverArtKey, JSX.Element> = {
       <path d="M150 58 Q138 44 142 32 Q152 40 150 58" stroke="currentColor" strokeWidth="0.75" opacity="0.5" />
       <path d="M150 58 Q162 44 158 32 Q148 40 150 58" stroke="currentColor" strokeWidth="0.75" opacity="0.5" />
       <circle cx="150" cy="28" r="3.5" fill="currentColor" opacity="0.9" />
+    </>
+  ),
+  psx: (
+    <>
+      <path d="M72 160 L228 160" stroke="currentColor" strokeWidth="0.7" opacity="0.4" />
+      <path d="M96 114 L96 150" stroke="currentColor" strokeWidth="0.7" opacity="0.5" />
+      <path d="M90 124 L102 124 L102 142 L90 142 Z" stroke="currentColor" strokeWidth="1" opacity="0.85" />
+      <path d="M126 100 L126 140" stroke="currentColor" strokeWidth="0.7" opacity="0.5" />
+      <path d="M120 108 L132 108 L132 130 L120 130 Z" stroke="currentColor" strokeWidth="1" opacity="0.85" />
+      <path d="M156 92 L156 128" stroke="currentColor" strokeWidth="0.7" opacity="0.5" />
+      <path d="M150 104 L162 104 L162 120 L150 120 Z" stroke="currentColor" strokeWidth="1" opacity="0.85" />
+      <path d="M186 70 L186 114" stroke="currentColor" strokeWidth="0.7" opacity="0.5" />
+      <path d="M180 80 L192 80 L192 104 L180 104 Z" stroke="currentColor" strokeWidth="1" opacity="0.85" />
+      <path d="M96 124 L126 108 L156 104 L186 80 L220 58" stroke="currentColor" strokeWidth="0.7" opacity="0.45" />
+      <circle cx="224" cy="56" r="4" fill="currentColor" opacity="0.9" />
+      <circle cx="224" cy="56" r="10" stroke="currentColor" strokeWidth="0.7" opacity="0.4" />
+    </>
+  ),
+  transcend: (
+    <>
+      <path d="M66 52 L234 52 L234 148 L66 148 Z" stroke="currentColor" strokeWidth="0.7" opacity="0.5" />
+      <path d="M78 44 L86 44 M100 44 L108 44 M122 44 L130 44 M144 44 L152 44 M166 44 L174 44 M188 44 L196 44 M210 44 L218 44" stroke="currentColor" strokeWidth="0.7" opacity="0.4" />
+      <path d="M78 156 L86 156 M100 156 L108 156 M122 156 L130 156 M144 156 L152 156 M166 156 L174 156 M188 156 L196 156 M210 156 L218 156" stroke="currentColor" strokeWidth="0.7" opacity="0.4" />
+      <path d="M66 132 L234 132" stroke="currentColor" strokeWidth="0.7" opacity="0.45" />
+      <path d="M118 132 L118 96 A32 32 0 0 1 182 96 L182 132" stroke="currentColor" strokeWidth="1" opacity="0.9" />
+      <path d="M130 132 L130 98 A20 20 0 0 1 170 98 L170 132" stroke="currentColor" strokeWidth="0.7" opacity="0.5" />
+      <circle cx="150" cy="112" r="3.5" fill="currentColor" opacity="0.9" />
     </>
   ),
 };

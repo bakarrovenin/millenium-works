@@ -14,6 +14,10 @@ import img11 from "@/assets/case-studies/11-market-tracker.jpg";
 
 export type Status = "Live" | "Acquired" | "Sunset" | "Delivered" | "Experiment";
 
+/** The disciplines a project is filed under on the case studies filter. */
+export const disciplines = ["Product", "Engineering", "Growth"] as const;
+export type Discipline = (typeof disciplines)[number];
+
 /**
  * Body copy supports inline links written as [text](href).
  * An href starting with "/" renders as an in-app link; anything else opens
@@ -32,6 +36,8 @@ export type CaseStudy = {
   title: string;
   status: Status;
   sectors: string[];
+  /** One or more disciplines; a project carries several only where it genuinely spans them. */
+  tags: Discipline[];
   year: string;
   /** The one-line description, used on both the card and the detail page. */
   tagline: string;
@@ -48,6 +54,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Assay",
     status: "Live",
     sectors: ["Security", "Developer Tools", "AI"],
+    tags: ["Product", "Engineering"],
     year: "2026",
     tagline:
       "The independent verification layer for AI-authored code, one verdict on every automated fix before it merges.",
@@ -75,6 +82,7 @@ export const caseStudies: CaseStudy[] = [
     title: "Rovenin",
     status: "Live",
     sectors: ["Fintech", "Research", "Capital Markets"],
+    tags: ["Product", "Engineering"],
     year: "2024",
     tagline:
       "Institutional-grade research on the questions retail investors actually care about, the first step toward a hedge fund built for the retail investor.",
@@ -107,10 +115,43 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: "03",
+    slug: "psx-by-rovenin",
+    title: "PSX by Rovenin",
+    status: "Live",
+    sectors: ["Fintech", "AI", "Capital Markets"],
+    tags: ["Product", "Engineering"],
+    year: "2026",
+    tagline:
+      "Live Pakistan Stock Exchange data inside Claude, the public API the market never had.",
+    tier: "full",
+    cover: { kind: "art", shape: "psx" },
+    sections: [
+      {
+        label: "The Thesis",
+        body: "Pakistan's stock market has never had a proper public API. The data sits on the PSX Data Portal, built for people clicking through tables. PSX by Rovenin is the missing layer: a remote MCP server that plugs straight into Claude as a custom connector, letting anyone ask about the Pakistan Stock Exchange in plain language.",
+      },
+      {
+        label: "What We Shaped",
+        body: "We built and shipped the connector end to end, served over MCP Streamable HTTP on Vercel. It ships nine read-only tools: symbol search, live quotes, price history, monthly OHLC, intraday prices, market movers, performance comparisons, index levels, and company profiles. Under the hood it runs with caching, rate limits that protect the upstream portal, automatic retries, and freshness warnings on delisted symbols. Data comes from PSX's public portal and can be delayed, and every response says so. Every tool is annotated to meet Claude's Connectors Directory standards, with public docs and a privacy policy, and we are working toward a directory listing. Built in Lahore.",
+      },
+      {
+        label: "Proof",
+        body: "Ask Claude how HBL did over the past year against the KSE 100 and it pulls the numbers itself. In testing it returned +20.53% for HBL, matching the figure PSX publishes. Nine read-only tools, live.",
+      },
+    ],
+    links: [
+      { label: "Connector", href: "https://psx.rovenin.com/api/mcp" },
+      { label: "Docs", href: "https://psx.rovenin.com/docs" },
+      { label: "A Rovenin product", href: "/case-studies/rovenin" },
+    ],
+  },
+  {
+    id: "04",
     slug: "trikl",
     title: "Trikl",
     status: "Acquired",
     sectors: ["Fintech", "Consumer"],
+    tags: ["Product", "Growth"],
     year: "2022",
     tagline:
       "The region's first card round-up investing platform, built from zero with the founding team, and acquired within the year.",
@@ -136,11 +177,12 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "04",
+    id: "05",
     slug: "garnet",
     title: "Garnet",
     status: "Live",
     sectors: ["Security", "Developer Tools"],
+    tags: ["Growth"],
     year: "2024",
     tagline:
       "Runtime security at the kernel, and the product-led growth engine that took it to market from a standing start.",
@@ -163,11 +205,12 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "garnet.ai", href: "https://www.garnet.ai" }],
   },
   {
-    id: "05",
+    id: "06",
     slug: "adam-smith-international",
     title: "Adam Smith International",
     status: "Delivered",
     sectors: ["Enterprise", "Operations"],
+    tags: ["Product", "Engineering"],
     year: "2024",
     tagline:
       "The internal operating system for a 4,000+ person global workforce, rebuilt from fragmented processes into one platform.",
@@ -192,11 +235,12 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "06",
+    id: "07",
     slug: "neuromonics",
     title: "Neuromonics",
     status: "Live",
     sectors: ["Healthtech", "Consumer"],
+    tags: ["Product"],
     year: "2025",
     tagline:
       "A clinical-grade tinnitus treatment platform: assessment, audio therapy, and provider coordination in one system.",
@@ -219,11 +263,12 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "neuromonics.com", href: "https://www.neuromonics.com" }],
   },
   {
-    id: "07",
+    id: "08",
     slug: "islapay",
     title: "Islapay",
     status: "Live",
     sectors: ["Fintech", "Payments", "Stablecoin"],
+    tags: ["Product"],
     year: "2025",
     tagline: "Fiat to stablecoin payment rails for the Caribbean, architected touchpoint by touchpoint.",
     tier: "full",
@@ -245,11 +290,12 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "Islapay on LinkedIn", href: "https://www.linkedin.com/company/islapay" }],
   },
   {
-    id: "08",
+    id: "09",
     slug: "vitalis-living",
     title: "Vitalis Living",
     status: "Live",
     sectors: ["Consumer", "Health", "Longevity"],
+    tags: ["Growth"],
     year: "2025",
     tagline:
       "A bet on the longevity space: Pakistan's natural, plant-based supplements brand.",
@@ -272,11 +318,45 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "vitalisliving.pk", href: "https://vitalisliving.pk" }],
   },
   {
-    id: "09",
+    id: "10",
+    slug: "transcend",
+    title: "Transcend",
+    status: "Live",
+    sectors: ["Media", "History"],
+    tags: ["Growth"],
+    year: "[YEAR]",
+    tagline:
+      "A cinematic history channel on YouTube, epic history told in short form, and the audience built around it.",
+    tier: "full",
+    cover: { kind: "art", shape: "transcend" },
+    sections: [
+      {
+        label: "The Thesis",
+        body: "History has always been told as story, yet most of it online is still told as a lecture. Transcend tells it as cinema: epic history in short form, built for the feed, with the pacing and scale of a film.",
+      },
+      {
+        label: "What We Shaped",
+        body: "[I WILL FILL: role and what was done]",
+      },
+      {
+        label: "Proof",
+        body: "[I WILL FILL: subscribers, views, standout video]",
+      },
+    ],
+    links: [
+      {
+        label: "Studio Transcend on YouTube",
+        href: "https://www.youtube.com/channel/UC7EDscnNu2fMqqFbb6sDv1A",
+      },
+    ],
+  },
+  {
+    id: "11",
     slug: "alt-ventures",
     title: "Alt Ventures",
     status: "Live",
     sectors: ["Studio", "Venture Building"],
+    tags: ["Product", "Growth"],
     year: "2019",
     tagline:
       "A startup studio building and scaling early-stage products from zero to one, and the origin of much of this portfolio.",
@@ -303,11 +383,12 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "altventures.co", href: "https://altventures.co" }],
   },
   {
-    id: "10",
+    id: "12",
     slug: "alt-sprints",
     title: "Alt Sprints",
     status: "Sunset",
     sectors: ["Studio", "No-Code"],
+    tags: ["Product", "Engineering"],
     year: "2023",
     tagline: "A no-code product studio, scaled to $25K per month and a 27-person team.",
     tier: "full",
@@ -332,11 +413,12 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "11",
+    id: "13",
     slug: "pryze",
     title: "Pryze",
     status: "Live",
     sectors: ["Consumer", "Gaming"],
+    tags: ["Product", "Growth"],
     year: "2023",
     tagline:
       "Pakistan's first skill-based competitive gaming platform, real-time tournaments for a regional market of 250M+ players.",
@@ -362,11 +444,12 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "12",
+    id: "14",
     slug: "jiye-kissan",
     title: "Jiye Kissan",
     status: "Sunset",
     sectors: ["Vertical SaaS", "Agritech"],
+    tags: ["Product"],
     year: "2021",
     tagline:
       "A three-way agricultural marketplace built to connect Pakistani farmers directly to retailers, farm to table.",
@@ -393,11 +476,12 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "13",
+    id: "15",
     slug: "steve-ai",
     title: "Steve AI",
     status: "Sunset",
     sectors: ["AI", "Developer Tools"],
+    tags: ["Product", "Engineering"],
     year: "2023",
     tagline: "An AI developer assistant for Linear, from Figma to live MVP in under seven days.",
     tier: "lean",
@@ -411,11 +495,12 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "Steve on Product Hunt", href: "https://www.producthunt.com/products/steve-2" }],
   },
   {
-    id: "14",
+    id: "16",
     slug: "alt-find",
     title: "Alt Find",
     status: "Sunset",
     sectors: ["AI", "Recruiting"],
+    tags: ["Product"],
     year: "2023",
     tagline: "An AI-assisted hiring platform, built from 50+ recruiter interviews.",
     tier: "lean",
@@ -429,11 +514,12 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "Alt Find on LinkedIn", href: "https://www.linkedin.com/company/altfind" }],
   },
   {
-    id: "15",
+    id: "17",
     slug: "not-nsfw",
     title: "Not NSFW",
     status: "Live",
     sectors: ["Consumer", "Media"],
+    tags: ["Growth"],
     year: "2022",
     tagline: "One clean workplace joke a day, a humor-first newsletter, still running.",
     tier: "lean",
@@ -447,11 +533,12 @@ export const caseStudies: CaseStudy[] = [
     links: [{ label: "notnsfw.substack.com", href: "https://notnsfw.substack.com" }],
   },
   {
-    id: "16",
+    id: "18",
     slug: "market-tracker",
     title: "Market Tracker",
     status: "Experiment",
     sectors: ["Fintech", "Personal Build"],
+    tags: ["Engineering"],
     year: "2026",
     tagline: "A live market tracker built to run on a BlackBerry Passport, modern data on a dead OS.",
     tier: "lean",
@@ -468,11 +555,12 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "17",
+    id: "19",
     slug: "ai-avatar",
     title: "AI Avatar",
     status: "Experiment",
     sectors: ["AI", "Consumer"],
+    tags: ["Product", "Engineering"],
     year: "2022",
     tagline: "A fast probe into generative avatars, before the category existed.",
     tier: "lean",

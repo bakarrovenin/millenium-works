@@ -1,9 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Layout from "@/components/Layout";
 import CoverArt from "@/components/CoverArt";
-import { caseStudies } from "@/data/caseStudies";
+import { caseStudies, disciplines, type Discipline } from "@/data/caseStudies";
+
+/**
+ * The active discipline lives in the query string (?discipline=growth) so a
+ * filtered view can be linked to. Anything unrecognised falls back to all.
+ */
+const parseDiscipline = (value: string | null): Discipline | undefined =>
+  disciplines.find((d) => d.toLowerCase() === value?.toLowerCase());
 
 const CaseStudies = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const active = parseDiscipline(searchParams.get("discipline"));
+  const visible = active ? caseStudies.filter((s) => s.tags.includes(active)) : caseStudies;
+
+  const select = (discipline?: Discipline) =>
+    setSearchParams(discipline ? { discipline: discipline.toLowerCase() } : {}, {
+      replace: true,
+    });
+
+  const filterClass = (on: boolean) =>
+    `tracked-label transition-colors ${
+      on ? "text-accent" : "text-muted-foreground hover:text-foreground"
+    }`;
+
   return (
     <Layout>
       <div className="px-8 md:px-12 py-12 md:py-20">
@@ -17,8 +38,34 @@ const CaseStudies = () => {
           </span>
         </div>
 
+        <div
+          role="group"
+          aria-label="Filter by discipline"
+          className="flex flex-wrap gap-x-6 gap-y-2 mb-10 md:mb-12"
+        >
+          <button
+            type="button"
+            aria-pressed={!active}
+            onClick={() => select()}
+            className={filterClass(!active)}
+          >
+            All
+          </button>
+          {disciplines.map((discipline) => (
+            <button
+              key={discipline}
+              type="button"
+              aria-pressed={active === discipline}
+              onClick={() => select(discipline)}
+              className={filterClass(active === discipline)}
+            >
+              {discipline}
+            </button>
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
-          {caseStudies.map((study) => (
+          {visible.map((study) => (
             <article key={study.id} className="group flex flex-col">
               <Link
                 to={`/case-studies/${study.slug}`}

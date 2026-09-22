@@ -135,6 +135,10 @@ const CaseStudyDetail = () => {
             <dt className="tracked-label text-muted-foreground mb-1.5">Sector</dt>
             <dd className="text-foreground text-sm">{study.sectors.join(", ")}</dd>
           </div>
+          <div>
+            <dt className="tracked-label text-muted-foreground mb-1.5">Discipline</dt>
+            <dd className="text-foreground text-sm">{study.tags.join(", ")}</dd>
+          </div>
         </dl>
 
         <div
