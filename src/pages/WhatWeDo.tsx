@@ -135,11 +135,72 @@ const practices: Practice[] = [
   },
 ];
 
+// Names on the site already: companies from the case studies, and investors
+// from the studio's own record. Grouped so each group gets its own label.
+const rooms = [
+  {
+    label: "Companies",
+    names: [
+      "Garnet",
+      "Adam Smith International",
+      "Neuromonics",
+      "Islapay",
+      "Trikl",
+      "Elphinstone",
+      "Pryze",
+      "Jiye Kissan",
+      "Jobaxis",
+    ],
+  },
+  { label: "Capital", names: ["Tiger Global", "Sequoia", "SVP", "Sarmayacar"] },
+];
+
+const RoomsStrip = () => {
+  const items = rooms.flatMap((group) => [
+    { kind: "label" as const, text: group.label },
+    ...group.names.map((text) => ({ kind: "name" as const, text })),
+  ]);
+
+  return (
+    <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-8 border-t border-border mt-5 pt-4">
+      <p className="font-display text-lg text-foreground shrink-0">
+        Some of the rooms we've built in.
+      </p>
+      <div
+        className="relative flex-1 overflow-hidden group [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]"
+        aria-label="Companies and investors we have worked with"
+      >
+        {/* Rendered twice for a seamless loop; the copy is hidden from screen readers. */}
+        <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused] motion-reduce:animate-none">
+          {[0, 1].map((copy) => (
+            <ul key={copy} aria-hidden={copy === 1} className="flex items-center shrink-0">
+              {items.map((item, i) =>
+                item.kind === "label" ? (
+                  <li key={i} className="tracked-label text-accent pl-4 pr-8">
+                    {item.text}
+                  </li>
+                ) : (
+                  <li
+                    key={i}
+                    className="font-display text-xl text-muted-foreground whitespace-nowrap pr-10"
+                  >
+                    {item.text}
+                  </li>
+                ),
+              )}
+            </ul>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const WhatWeDo = () => {
   return (
     <Layout>
-      <div className="flex-1 min-h-0 flex flex-col px-8 md:px-12 pt-6 md:pt-8">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6 md:mb-8">
+      <div className="flex-1 min-h-0 flex flex-col px-8 md:px-12 pt-6">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
           <div>
             <span className="tracked-label text-muted-foreground">
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2 align-middle" />
@@ -160,6 +221,8 @@ const WhatWeDo = () => {
             <PracticeCard key={p.name} practice={p} />
           ))}
         </div>
+
+        <RoomsStrip />
       </div>
     </Layout>
   );
@@ -171,9 +234,9 @@ const PracticeCard = ({ practice: p }: { practice: Practice }) => {
 
   return (
     <article className="bg-card border border-border rounded-xl p-6 lg:p-7 flex flex-col min-h-0 overflow-hidden">
-      {/* The drawing takes whatever height is left, and steps aside for the detail. */}
+      {/* The drawing takes whatever height is left; it steps aside for the detail and on short screens. */}
       {!open && (
-        <div className={`${p.text} h-24 md:h-auto md:flex-1 md:min-h-16 md:max-h-48 mb-5`}>
+        <div className={`${p.text} h-24 md:h-auto md:flex-1 md:min-h-16 md:max-h-48 mb-5 md:[@media(max-height:839px)]:hidden`}>
           <p.Art />
         </div>
       )}

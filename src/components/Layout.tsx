@@ -38,7 +38,7 @@ const Layout = ({ children }: LayoutProps) => {
         {children}
       </main>
 
-      <footer className="px-8 md:px-12 pb-8 md:pb-10 mt-12">
+      <footer className={`px-8 md:px-12 pb-8 md:pb-10 ${isWhatWeDo ? "mt-8" : "mt-12"}`}>
         <div className="border-t border-border pt-6">
           <nav className="flex flex-wrap justify-between items-center gap-4">
             {navItems.map((item) => {
