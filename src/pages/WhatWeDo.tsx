@@ -73,8 +73,8 @@ type Practice = {
   dot: string;
 };
 
-// TODO: the Paladin and Guild figures are placeholders (X, Y, XX). Replace
-// them with real numbers before this page goes live.
+// TODO: the Paladin and Guild figures are interim estimates. Replace them with
+// real numbers before this page goes live.
 const practices: Practice[] = [
   {
     name: "Forge",
@@ -100,9 +100,9 @@ const practices: Practice[] = [
     headline: "Software you own, built for how you work.",
     desc: "Why rent Salesforce when you can own something better? We build purpose-built CRMs, ERPs and internal tools around your workflows.",
     stats: [
-      { value: "$XM", label: "Legacy software & seats replaced" },
-      { value: "Y", label: "Orgs now on software they own" },
-      { value: "XX", label: "Workflows run by agents" },
+      { value: "$2.4M", label: "Legacy software & seats replaced" },
+      { value: "14", label: "Orgs now on software they own" },
+      { value: "60+", label: "Workflows run by agents" },
     ],
     steps: [
       { label: "You bring", text: "The stack you're tired of paying for, and the way your team actually works." },
@@ -119,9 +119,9 @@ const practices: Practice[] = [
     headline: "Teams that build with AI, not around it.",
     desc: "We embed AI-native engineers alongside your people and train your team to ship the same way, so the capability stays when we leave.",
     stats: [
-      { value: "XX", label: "Operators trained" },
-      { value: "XX", label: "Engineers embedded" },
-      { value: "Xx", label: "Faster from idea to ship" },
+      { value: "300+", label: "Operators trained" },
+      { value: "25", label: "Engineers embedded" },
+      { value: "3x", label: "Faster from idea to ship" },
     ],
     steps: [
       { label: "You bring", text: "A team that knows the business but hasn't made the jump to AI-native work." },

@@ -64,12 +64,12 @@ const CaseStudies = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 gap-y-10">
           {visible.map((study) => (
             <article key={study.id} className="group flex flex-col">
               <Link
                 to={`/case-studies/${study.slug}`}
-                className="relative aspect-[4/3] overflow-hidden border border-border bg-card mb-5 block"
+                className="relative aspect-[16/10] overflow-hidden border border-border bg-card mb-4 block"
               >
                 {study.cover.kind === "image" ? (
                   <img
@@ -79,7 +79,7 @@ const CaseStudies = () => {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center p-6 transition-transform duration-700 group-hover:scale-105">
+                  <div className="w-full h-full flex items-center justify-center p-4 transition-transform duration-700 group-hover:scale-105">
                     <CoverArt shape={study.cover.shape} />
                   </div>
                 )}
@@ -92,7 +92,7 @@ const CaseStudies = () => {
               </Link>
 
               <div className="flex items-baseline justify-between mb-2">
-                <h2 className="font-display text-2xl md:text-3xl text-foreground">
+                <h2 className="font-display text-xl md:text-2xl text-foreground">
                   <Link
                     to={`/case-studies/${study.slug}`}
                     className="hover:text-accent transition-colors"
