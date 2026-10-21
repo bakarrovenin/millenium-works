@@ -15,9 +15,16 @@ const navItems = [
 const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
   const isHome = location.pathname === "/";
+  // /what-we-do is a single screen on desktop. On phones, and on screens too
+  // short to hold the cards, it falls back to scrolling so nothing is cut off.
+  const isWhatWeDo = location.pathname === "/what-we-do";
 
   return (
-    <div className={`min-h-screen bg-background flex flex-col ${isHome ? 'h-screen overflow-hidden' : ''}`}>
+    <div
+      className={`min-h-screen bg-background flex flex-col ${isHome ? 'h-screen overflow-hidden' : ''} ${
+        isWhatWeDo ? 'md:[@media(min-height:760px)]:h-screen md:[@media(min-height:760px)]:overflow-hidden' : ''
+      }`}
+    >
       <header className="px-8 md:px-12 pt-8 md:pt-10 flex items-baseline justify-between">
         <Link
           to="/"

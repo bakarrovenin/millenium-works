@@ -14,8 +14,8 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        sans: ['"Turret Road"', 'system-ui', 'sans-serif'],
-        display: ['"Turret Road"', 'Georgia', 'serif'],
+        sans: ['"Saira"', 'system-ui', 'sans-serif'],
+        display: ['"Saira Semi Condensed"', '"Saira"', 'system-ui', 'sans-serif'],
       },
       // The three body sizes sit one step above Tailwind's defaults
       // (14/16/18 -> 15/17/19) so paragraphs match the 17px base set on
@@ -47,6 +47,9 @@ const config: Config = {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
+        forge: "hsl(var(--forge) / <alpha-value>)",
+        paladin: "hsl(var(--paladin) / <alpha-value>)",
+        guild: "hsl(var(--guild) / <alpha-value>)",
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
