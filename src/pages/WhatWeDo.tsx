@@ -1,5 +1,10 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
+import tigerGlobalLogo from "@/assets/logos/tiger-global.png";
+import sequoiaLogo from "@/assets/logos/sequoia.png";
+import firstminuteLogo from "@/assets/logos/firstminute.png";
+import svAngelLogo from "@/assets/logos/sv-angel.png";
+import triklLogo from "@/assets/logos/trikl.png";
 
 // Line drawings, one per practice. Fine strokes in the practice colour via
 // currentColor, in the spirit of the rest of the site's line-art covers.
@@ -135,30 +140,44 @@ const practices: Practice[] = [
   },
 ];
 
-// Names on the site already: companies from the case studies, and investors
-// from the studio's own record. Grouped so each group gets its own label.
-const rooms = [
+// Companies from the case studies and investors in the rooms we have built
+// in. Where we have a logo it is shown, otherwise the name is set in type.
+// Logos are one-colour PNGs (src/assets/logos); each gets a height that
+// balances its width against the others.
+type Room = { name: string; logo?: string; h?: number };
+
+const rooms: { label: string; entries: Room[] }[] = [
   {
     label: "Companies",
-    names: [
-      "Garnet",
-      "Adam Smith International",
-      "Neuromonics",
-      "Islapay",
-      "Trikl",
-      "Elphinstone",
-      "Pryze",
-      "Jiye Kissan",
-      "Jobaxis",
+    entries: [
+      { name: "Garnet" },
+      { name: "Adam Smith International" },
+      { name: "Neuromonics" },
+      { name: "Islapay" },
+      { name: "Trikl", logo: triklLogo, h: 30 },
+      { name: "Elphinstone" },
+      { name: "Pryze" },
+      { name: "Jiye Kissan" },
+      { name: "Jobaxis" },
     ],
   },
-  { label: "Capital", names: ["Tiger Global", "Sequoia", "SVP", "Sarmayacar"] },
+  {
+    label: "Capital",
+    entries: [
+      { name: "Tiger Global", logo: tigerGlobalLogo, h: 20 },
+      { name: "Sequoia", logo: sequoiaLogo, h: 22 },
+      { name: "firstminute capital", logo: firstminuteLogo, h: 32 },
+      { name: "SV Angel", logo: svAngelLogo, h: 34 },
+      { name: "SVP" },
+      { name: "Sarmayacar" },
+    ],
+  },
 ];
 
 const RoomsStrip = () => {
   const items = rooms.flatMap((group) => [
-    { kind: "label" as const, text: group.label },
-    ...group.names.map((text) => ({ kind: "name" as const, text })),
+    { kind: "label" as const, name: group.label },
+    ...group.entries.map((entry) => ({ kind: "entry" as const, ...entry })),
   ]);
 
   return (
@@ -173,18 +192,26 @@ const RoomsStrip = () => {
         {/* Rendered twice for a seamless loop; the copy is hidden from screen readers. */}
         <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused] motion-reduce:animate-none">
           {[0, 1].map((copy) => (
-            <ul key={copy} aria-hidden={copy === 1} className="flex items-center shrink-0">
+            <ul key={copy} aria-hidden={copy === 1} className="flex items-center h-10 shrink-0">
               {items.map((item, i) =>
                 item.kind === "label" ? (
                   <li key={i} className="tracked-label text-accent pl-4 pr-8">
-                    {item.text}
+                    {item.name}
                   </li>
                 ) : (
-                  <li
-                    key={i}
-                    className="font-display text-xl text-muted-foreground whitespace-nowrap pr-10"
-                  >
-                    {item.text}
+                  <li key={i} className="pr-10 shrink-0">
+                    {item.logo ? (
+                      <img
+                        src={item.logo}
+                        alt={copy === 1 ? "" : item.name}
+                        style={{ height: item.h }}
+                        className="w-auto opacity-60"
+                      />
+                    ) : (
+                      <span className="font-display text-xl text-muted-foreground whitespace-nowrap">
+                        {item.name}
+                      </span>
+                    )}
                   </li>
                 ),
               )}
