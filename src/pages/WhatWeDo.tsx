@@ -5,6 +5,8 @@ import sequoiaLogo from "@/assets/logos/sequoia.png";
 import firstminuteLogo from "@/assets/logos/firstminute.png";
 import svAngelLogo from "@/assets/logos/sv-angel.png";
 import triklLogo from "@/assets/logos/trikl.png";
+import garnetLogo from "@/assets/logos/garnet.png";
+import adamSmithLogo from "@/assets/logos/adam-smith.png";
 
 // Line drawings, one per practice. Fine strokes in the practice colour via
 // currentColor, in the spirit of the rest of the site's line-art covers.
@@ -150,8 +152,8 @@ const rooms: { label: string; entries: Room[] }[] = [
   {
     label: "Companies",
     entries: [
-      { name: "Garnet" },
-      { name: "Adam Smith International" },
+      { name: "Garnet", logo: garnetLogo, h: 32 },
+      { name: "Adam Smith International", logo: adamSmithLogo, h: 32 },
       { name: "Neuromonics" },
       { name: "Islapay" },
       { name: "Trikl", logo: triklLogo, h: 30 },
