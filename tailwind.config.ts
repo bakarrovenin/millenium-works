@@ -14,8 +14,8 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        sans: ['"Turret Road"', 'system-ui', 'sans-serif'],
-        display: ['"Turret Road"', 'Georgia', 'serif'],
+        sans: ['"Saira"', 'system-ui', 'sans-serif'],
+        display: ['"Saira Semi Condensed"', '"Saira"', 'system-ui', 'sans-serif'],
       },
       // The three body sizes sit one step above Tailwind's defaults
       // (14/16/18 -> 15/17/19) so paragraphs match the 17px base set on
@@ -47,6 +47,9 @@ const config: Config = {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
+        forge: "hsl(var(--forge) / <alpha-value>)",
+        paladin: "hsl(var(--paladin) / <alpha-value>)",
+        guild: "hsl(var(--guild) / <alpha-value>)",
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
@@ -76,6 +79,11 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        // Slides a list that is rendered twice by half its width, so it loops seamlessly.
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
         "accordion-down": {
           from: {
             height: "0",
@@ -94,6 +102,7 @@ const config: Config = {
         },
       },
       animation: {
+        marquee: "marquee 60s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },

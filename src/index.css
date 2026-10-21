@@ -4,45 +4,51 @@
 
 @layer base {
   :root {
-    /* Dark editorial palette */
-    --background: 0 0% 4%;
-    --foreground: 40 22% 94%;
+    /* Light editorial palette: off-white ground, near-black ink. */
+    --background: 40 20% 98%;
+    --foreground: 0 0% 7%;
 
-    --card: 0 0% 6%;
-    --card-foreground: 40 22% 94%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
 
-    --popover: 0 0% 6%;
-    --popover-foreground: 40 22% 94%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
 
-    --primary: 40 22% 94%;
-    --primary-foreground: 0 0% 4%;
+    --primary: 0 0% 7%;
+    --primary-foreground: 40 20% 98%;
 
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 40 22% 94%;
+    --secondary: 40 10% 93%;
+    --secondary-foreground: 0 0% 7%;
 
-    --muted: 0 0% 12%;
-    --muted-foreground: 36 8% 60%;
+    --muted: 40 10% 93%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 42 45% 54%;
-    --accent-foreground: 0 0% 4%;
+    /* Gold, darkened from the dark-theme value so it reads on white. */
+    --accent: 38 60% 36%;
+    --accent-foreground: 40 20% 98%;
 
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 40 22% 94%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 40 20% 98%;
 
-    --border: 0 0% 14%;
-    --input: 0 0% 14%;
-    --ring: 42 45% 54%;
+    --border: 0 0% 87%;
+    --input: 0 0% 87%;
+    --ring: 38 60% 36%;
 
     --radius: 0.25rem;
 
-    --sidebar-background: 0 0% 4%;
-    --sidebar-foreground: 40 22% 94%;
-    --sidebar-primary: 40 22% 94%;
-    --sidebar-primary-foreground: 0 0% 4%;
-    --sidebar-accent: 0 0% 10%;
-    --sidebar-accent-foreground: 40 22% 94%;
-    --sidebar-border: 0 0% 14%;
-    --sidebar-ring: 42 45% 54%;
+    /* One accent per practice on /what-we-do. */
+    --forge: 18 85% 48%;
+    --paladin: 214 70% 42%;
+    --guild: 268 50% 48%;
+
+    --sidebar-background: 40 20% 98%;
+    --sidebar-foreground: 0 0% 7%;
+    --sidebar-primary: 0 0% 7%;
+    --sidebar-primary-foreground: 40 20% 98%;
+    --sidebar-accent: 40 10% 93%;
+    --sidebar-accent-foreground: 0 0% 7%;
+    --sidebar-border: 0 0% 87%;
+    --sidebar-ring: 38 60% 36%;
   }
 }
 
@@ -58,8 +64,7 @@
    * keep the weight they always had and are not dragged along.
    */
   html, body {
-    font-family: 'Turret Road', system-ui, sans-serif;
-    font-feature-settings: "ss01", "cv11";
+    font-family: 'Saira', system-ui, sans-serif;
   }
 
   body {
@@ -76,20 +81,21 @@
 }
 
 @layer utilities {
+  /* Saira Semi Condensed at semibold: the nearest open match to Archimoto. */
   .font-display {
-    font-family: 'Turret Road', Georgia, serif;
-    font-weight: 400;
+    font-family: 'Saira Semi Condensed', 'Saira', system-ui, sans-serif;
+    font-weight: 600;
     letter-spacing: -0.01em;
   }
 
   .font-display-italic {
-    font-family: 'Turret Road', Georgia, serif;
+    font-family: 'Saira Semi Condensed', 'Saira', system-ui, sans-serif;
     font-style: italic;
-    font-weight: 400;
+    font-weight: 600;
   }
 
   .tracked-label {
-    font-family: 'Turret Road', sans-serif;
+    font-family: 'Saira', sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.18em;
     font-size: 0.7rem;
